@@ -1,0 +1,13 @@
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\obj\Debug\TelasCSharpp.csproj.AssemblyReference.cache
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\obj\Debug\TelasCSharpp.csproj.SuggestedBindingRedirects.cache
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\obj\Debug\TelasCSharpp.Form1.resources
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\obj\Debug\TelasCSharpp.Properties.Resources.resources
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\obj\Debug\TelasCSharpp.csproj.GenerateResource.cache
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\obj\Debug\TelasCSharpp.csproj.CoreCompileInputs.cache
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\bin\Debug\TelasCSharpp.exe.config
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\bin\Debug\TelasCSharpp.exe
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\bin\Debug\TelasCSharpp.pdb
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\obj\Debug\TelasCSharpp.exe
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\obj\Debug\TelasCSharpp.pdb
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\obj\Debug\TelasCSharpp.Form2.resources
+C:\Users\vinicius.aclsantos\source\repos\TelasCSharpp\TelasCSharpp\obj\Debug\TelasCSharpp.Form3.resources
