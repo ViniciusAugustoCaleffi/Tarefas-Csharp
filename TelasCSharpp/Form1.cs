@@ -29,7 +29,6 @@ namespace TelasCSharpp
         {
             Form2 cad = new Form2();
             cad.ShowDialog();
-
         } // Adicionar Tarefa
 
         private void button2_Click(object sender, EventArgs e)
@@ -80,8 +79,6 @@ namespace TelasCSharpp
             botao.FlatAppearance.BorderSize = 0;
             botao.Font = new Font("Segoe UI", 10, FontStyle.Bold);
         }
-
-
 
 
 
@@ -150,11 +147,7 @@ namespace TelasCSharpp
             };
 
             Label descricao = new Label
-
-
             {
-
-
                 Text = tarefa.Descricao,
 
 
@@ -168,14 +161,10 @@ namespace TelasCSharpp
 
 
                 Dock = DockStyle.Top
-
-
             };
 
             Label dataVencimento = new Label
             {
-
-
                 Text = $"Vence em: {tarefa.DtVencimento.ToString("dd/MM/yyyy")}",
 
 
@@ -192,17 +181,11 @@ namespace TelasCSharpp
 
 
                 TextAlign = ContentAlignment.MiddleCenter
-
-
             };
 
 
             Label prioridade = new Label
-
-
             {
-
-
                 Text = $"Prioridade: {tarefa.Prioridade}",
 
 
@@ -219,33 +202,20 @@ namespace TelasCSharpp
 
 
                 TextAlign = ContentAlignment.MiddleCenter,
-
-
             };
 
             switch (tarefa.Prioridade.ToLower())
-
-
             {
-
-
                 case "alta":
-
-
                     prioridade.BackColor = Color.Orange;
 
-
                     prioridade.ForeColor = Color.White;
-
-
                     break;
 
                 case "média":
 
 
                 case "media":
-
-
                     prioridade.BackColor = Color.Gold;
 
 
@@ -255,8 +225,6 @@ namespace TelasCSharpp
                     break;
 
                 case "baixa":
-
-
                     prioridade.BackColor = Color.LightGreen;
 
 
@@ -266,8 +234,6 @@ namespace TelasCSharpp
                     break;
 
                 default:
-
-
                     prioridade.BackColor = Color.LightGray;
 
 
@@ -275,73 +241,70 @@ namespace TelasCSharpp
 
 
                     break;
-
-
             }
 
 
             Button deletarBtn = new Button
-
-
             {
-
-
                 Text = "Deletar",
-
 
                 Dock = DockStyle.Bottom,
 
-
                 Height = 25,
-
 
                 BackColor = Color.FromArgb(255, 100, 100),
 
-
                 ForeColor = Color.White,
 
-
                 FlatStyle = FlatStyle.Flat
-
-
             };
 
 
             deletarBtn.FlatAppearance.BorderSize = 0;
 
             deletarBtn.Click += (s, e) =>
-
-
             {
-
-
                 var resultado = MessageBox.Show("Deseja realmente excluir?", "Confirmação", MessageBoxButtons.YesNo);
 
 
                 if (resultado == DialogResult.Yes)
-
-
                 {
-
-
                     DAO dao = new DAO();
 
 
                     dao.ExcluirTarefa(tarefa.Id);
 
                     ObterTarefasEAtualizarTabelas();
-
-
                 }
-
-
             };
 
+            Button atualizarBtn = new Button
+            {
+                Text = "Atualizar",
+
+                Dock = DockStyle.Bottom,
+
+                Height = 25,
+
+                BackColor = Color.Gray,
+
+                ForeColor = Color.White,
+
+                FlatStyle = FlatStyle.Flat
+            };
+
+
+            atualizarBtn.FlatAppearance.BorderSize = 0;
+
+            atualizarBtn.Click += (s, e) =>
+            {
+                Form2 cad = new Form2();                
+                cad.Show();
+            };
+
+            card.Controls.Add(atualizarBtn);
+
             card.Controls.Add(deletarBtn);
-
-
-
-
 
             card.Controls.Add(prioridade);
 

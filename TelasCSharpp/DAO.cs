@@ -63,8 +63,6 @@ namespace TelasCSharpp
                     tarefas.Add(tarefa);
 
                 }//fim while
-                var message = string.Join(Environment.NewLine, tarefas);
-                MessageBox.Show(message);
                 leitura.Close();
                 return tarefas;
             }
@@ -90,17 +88,11 @@ namespace TelasCSharpp
 
         public void ExcluirTarefa(int id)
         { /* Implementação */
-            var tarefas = new List<Tarefa>();
-            int removidos = tarefas.RemoveAll(t => t.Id == id);
 
-            if (removidos > 0)
-            {
-                Console.WriteLine("\nTarefa removida com sucesso!");
-            }
-            else
-            {
-                Console.WriteLine("\nTarefa não encontrada.");
-            }
+            var query = $"DELETE FROM Tarefa WHERE Id = {id}";
+            var sql = new MySqlCommand(query, conexao);
+            sql.ExecuteNonQuery();
+
 
         }
 
