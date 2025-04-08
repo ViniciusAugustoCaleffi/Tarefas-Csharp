@@ -54,14 +54,27 @@ namespace TelasCSharpp
 
         } // Seletor Prioridade
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void maskedTextBoxDtVencimento_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
-        } // Data Nascimento
+        }// Data vencimento
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DAO inserir = new DAO();
 
+            string Titulo = textBox2.Text;
+            string Descricao = textBox1.Text;
+            string Prioridade = comboBox1.Text;
+
+            DateTime DtVencimento = DateTime.Now;
+            DtVencimento = Convert.ToDateTime(maskedTextBoxDtVencimento.Text);
+            string sqlFormattedDate = DtVencimento.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+            MessageBox.Show(DtVencimento + "   " + maskedTextBoxDtVencimento.Text + "    " + Convert.ToDateTime(maskedTextBoxDtVencimento.Text) + "    " + sqlFormattedDate);
+
+            MessageBox.Show(inserir.Inserir(Titulo, Descricao, Prioridade, sqlFormattedDate));
+            this.Close();
         } // Botão Adicionar Tarefa
 
         private void button2_Click(object sender, EventArgs e)
@@ -102,5 +115,6 @@ namespace TelasCSharpp
             PersonalizarBotao(button1); // Botão Adicionar Tarefa
             PersonalizarBotao(button2); // Botão Voltar
         }
+
     }
 }
