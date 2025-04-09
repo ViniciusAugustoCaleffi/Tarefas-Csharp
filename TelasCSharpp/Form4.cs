@@ -14,12 +14,13 @@ namespace TelasCSharpp
     public partial class Form4 : Form
     {
         public int _id;
+        Form1 form;
         public Form4(int id)
         {
             _id = id;
             DAO dao = new DAO();
             InitializeComponent();
-
+            form = new Form1();
             var tarefa = dao.ObterTarefaPorId(id);
 
             textBox2.Text = tarefa.Titulo;
@@ -60,7 +61,7 @@ namespace TelasCSharpp
 
         }//Concluido
 
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
             DAO dao = new DAO();
             
@@ -80,14 +81,18 @@ namespace TelasCSharpp
             dao.Atualizar(_id, "dtVencimento", sqlFormattedDate);
             dao.Atualizar(_id, "concluida", concluida);
 
+            
+
+            
+
 
             MessageBox.Show("Dados Atualizados com sucesso!");
 
-            var form = new Form1();
 
-            form.ObterTarefasEAtualizarTabelas();
 
-            this.Close();
+
+            Close();
+            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

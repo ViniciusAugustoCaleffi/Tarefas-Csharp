@@ -17,6 +17,8 @@ namespace TelasCSharpp
         {
             InitializeComponent();
             this.Load += Form2_Load; // Adiciona o evento de carregamento
+            Form1 form = new Form1();
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -66,9 +68,10 @@ namespace TelasCSharpp
             string Titulo = textBox2.Text;
             string Descricao = textBox1.Text;
             string Prioridade = comboBox1.Text;
+            
 
             DateTime DtVencimento = DateTime.Now;
-            DtVencimento = Convert.ToDateTime(maskedTextBoxDtVencimento.Text);
+            DtVencimento = Convert.ToDateTime(dateTimePicker1.Text);
             string sqlFormattedDate = DtVencimento.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
 
@@ -116,6 +119,11 @@ namespace TelasCSharpp
         }
 
         private void Form2_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }

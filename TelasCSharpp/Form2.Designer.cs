@@ -42,7 +42,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.maskedTextBoxDtVencimento = new System.Windows.Forms.MaskedTextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -189,23 +188,14 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // maskedTextBoxDtVencimento
-            // 
-            this.maskedTextBoxDtVencimento.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.maskedTextBoxDtVencimento.Location = new System.Drawing.Point(538, 310);
-            this.maskedTextBoxDtVencimento.Mask = "00/00/0000";
-            this.maskedTextBoxDtVencimento.Name = "maskedTextBoxDtVencimento";
-            this.maskedTextBoxDtVencimento.Size = new System.Drawing.Size(97, 20);
-            this.maskedTextBoxDtVencimento.TabIndex = 39;
-            this.maskedTextBoxDtVencimento.ValidatingType = typeof(System.DateTime);
-            this.maskedTextBoxDtVencimento.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBoxDtVencimento_MaskInputRejected);
-            // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.SystemColors.ScrollBar;
             this.dateTimePicker1.Location = new System.Drawing.Point(109, 311);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(247, 20);
             this.dateTimePicker1.TabIndex = 40;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // Form2
             // 
@@ -214,7 +204,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.maskedTextBoxDtVencimento);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label8);
@@ -252,7 +241,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBoxDtVencimento;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
