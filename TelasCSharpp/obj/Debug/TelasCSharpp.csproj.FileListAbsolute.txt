@@ -57,3 +57,4 @@ C:\Users\jonatas.nsantos2\source\repos\Tarefas-Csharp\TelasCSharpp\bin\Debug\Sys
 C:\Users\jonatas.nsantos2\source\repos\Tarefas-Csharp\TelasCSharpp\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\jonatas.nsantos2\source\repos\Tarefas-Csharp\TelasCSharpp\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\jonatas.nsantos2\source\repos\Tarefas-Csharp\TelasCSharpp\obj\Debug\TelasCSharpp.csproj.CopyComplete
+C:\Users\jonatas.nsantos2\source\repos\Tarefas-Csharp\TelasCSharpp\obj\Debug\TelasCSharpp.Form4.resources

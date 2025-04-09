@@ -64,9 +64,11 @@ namespace TelasCSharpp
 
                 }//fim while
                 leitura.Close();
-                return tarefas;
-            }
 
+                tarefas = tarefas.OrderBy(p => p.DtVencimento).ThenBy(p => p.Prioridade).ToList();
+
+                return (tarefas);
+            }
         }
 
 
@@ -80,11 +82,38 @@ namespace TelasCSharpp
 
         public string Atualizar(int id, string campo, string dado)
         {
-            string query = $"update pessoa set {campo} = '{dado}' where id = '{id}'";
+            string query = $"update tarefa set {campo} = '{dado}' where id = '{id}'";
             MySqlCommand sql = new MySqlCommand(query, conexao);
             String resultado = sql.ExecuteNonQuery() + " Atualizados!";
             return resultado;
         }//fim mt atualizar
+
+        public Tarefa ObterTarefaPorId(int id)
+        {
+            var query = $"SELECT * FROM Tarefa WHERE Id = {id}";
+            var sql = new MySqlCommand(query, conexao);
+
+            var tarefa = new Tarefa();
+
+            using (var resultado = sql.ExecuteReader())
+            {
+                while (resultado.Read())
+                {
+                    tarefa = new Tarefa()
+                    {
+                        Id = resultado.GetInt32("Id"),
+                        Titulo = resultado.GetString("Titulo"),
+                        Descricao = resultado.GetString("Descricao"),
+                        Prioridade = resultado.GetString("Prioridade"),
+                        Concluida = resultado.GetBoolean("concluida"),
+                        DtVencimento = resultado.GetDateTime("DtVencimento"),
+                    };
+                }
+            }
+
+            return tarefa;
+        }
+        
 
         public void ExcluirTarefa(int id)
         { /* Implementação */

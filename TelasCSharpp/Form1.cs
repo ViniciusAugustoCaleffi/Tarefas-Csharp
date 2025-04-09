@@ -17,6 +17,7 @@ namespace TelasCSharpp
         {
             InitializeComponent();
             ObterTarefasEAtualizarTabelas();
+            flowLayoutPanel1.AutoScroll = true;
             this.Load += Form1_Load;
         }
 
@@ -59,8 +60,6 @@ namespace TelasCSharpp
         private void Form1_Load(object sender, EventArgs e)
         {
             PersonalizarBotao(button1);
-            PersonalizarBotao(button2);
-            PersonalizarBotao(button3);
         }
 
         private void PersonalizarBotao(Button botao)
@@ -206,22 +205,17 @@ namespace TelasCSharpp
 
             switch (tarefa.Prioridade.ToLower())
             {
-                case "alta":
+                case "Alta":
                     prioridade.BackColor = Color.Orange;
 
                     prioridade.ForeColor = Color.White;
                     break;
-
-                case "média":
-
 
                 case "media":
                     prioridade.BackColor = Color.Gold;
 
 
                     prioridade.ForeColor = Color.Black;
-
-
                     break;
 
                 case "baixa":
@@ -229,17 +223,13 @@ namespace TelasCSharpp
 
 
                     prioridade.ForeColor = Color.Black;
-
-
                     break;
 
                 default:
-                    prioridade.BackColor = Color.LightGray;
+                    prioridade.BackColor = Color.Red;
 
 
                     prioridade.ForeColor = Color.Black;
-
-
                     break;
             }
 
@@ -298,7 +288,7 @@ namespace TelasCSharpp
 
             atualizarBtn.Click += (s, e) =>
             {
-                Form2 cad = new Form2();                
+                Form4 cad = new Form4(tarefa.Id);
                 cad.Show();
             };
 
@@ -308,15 +298,23 @@ namespace TelasCSharpp
 
             card.Controls.Add(prioridade);
 
-
             card.Controls.Add(descricao);
-
 
             card.Controls.Add(titulo);
 
             return card;
 
 
+        }
+
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ObterTarefasEAtualizarTabelas();
         }
     }
 }

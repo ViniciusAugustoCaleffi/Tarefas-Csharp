@@ -71,7 +71,6 @@ namespace TelasCSharpp
             DtVencimento = Convert.ToDateTime(maskedTextBoxDtVencimento.Text);
             string sqlFormattedDate = DtVencimento.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
-            MessageBox.Show(DtVencimento + "   " + maskedTextBoxDtVencimento.Text + "    " + Convert.ToDateTime(maskedTextBoxDtVencimento.Text) + "    " + sqlFormattedDate);
 
             MessageBox.Show(inserir.Inserir(Titulo, Descricao, Prioridade, sqlFormattedDate));
             this.Close();
@@ -116,5 +115,9 @@ namespace TelasCSharpp
             PersonalizarBotao(button2); // Botão Voltar
         }
 
+        private void Form2_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
