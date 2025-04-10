@@ -65,11 +65,23 @@ namespace TelasCSharpp
                 }//fim while
                 leitura.Close();
 
-                tarefas = tarefas.OrderBy(p => p.DtVencimento).ThenBy(p => p.Prioridade).ToList();
+                var prioridadeOrdem = new Dictionary<string, int>
+                    {
+                        { "Alta", 1 },
+                        { "Media", 2 },
+                        { "Baixa", 3 }
+                    };
+
+                tarefas = tarefas
+                    .OrderBy(p => p.DtVencimento)
+                    .ThenBy(p => prioridadeOrdem.ContainsKey(p.Prioridade) ? prioridadeOrdem[p.Prioridade] : 999)
+                    .ToList();
 
                 return (tarefas);
             }
         }
+
+
 
 
         public string Inserir(string Titulo, string Descricao, string Prioridade, string DtVencimento)
@@ -77,6 +89,7 @@ namespace TelasCSharpp
             string inserir = $"insert into tarefa(id,titulo,descricao,prioridade,dtVencimento,concluida)value('','{Titulo}','{Descricao}','{Prioridade}','{DtVencimento}','')";
             MySqlCommand sql = new MySqlCommand(inserir, conexao);
             string resultado = sql.ExecuteNonQuery() + "Executados";
+            
             return resultado;
         }//fim inserir
 

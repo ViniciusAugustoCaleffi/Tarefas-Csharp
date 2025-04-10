@@ -13,11 +13,12 @@ namespace TelasCSharpp
 {
     public partial class Form2 : Form
     {
+        Form1 form;
         public Form2()
         {
             InitializeComponent();
             this.Load += Form2_Load; // Adiciona o evento de carregamento
-            Form1 form = new Form1();
+            form = new Form1();
 
         }
 
@@ -76,6 +77,9 @@ namespace TelasCSharpp
 
 
             MessageBox.Show(inserir.Inserir(Titulo, Descricao, Prioridade, sqlFormattedDate));
+
+            form.ObterTarefasEAtualizarTabelas();
+
             this.Close();
         } // Botão Adicionar Tarefa
 

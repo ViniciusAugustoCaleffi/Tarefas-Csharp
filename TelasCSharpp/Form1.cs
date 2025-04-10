@@ -30,6 +30,7 @@ namespace TelasCSharpp
         {
             Form2 cad = new Form2();
             cad.ShowDialog();
+
         } // Adicionar Tarefa
 
         private void button2_Click(object sender, EventArgs e)
@@ -68,12 +69,13 @@ namespace TelasCSharpp
             this.BackColor = Color.FromArgb(40, 40, 40); // Cinza escuro
 
             // 🟤 Fundo do painel onde os cards são exibidos
-            flowLayoutPanel1.BackColor = Color.FromArgb(40, 40, 40);
 
             flowLayoutPanel1.BackColor = Color.FromArgb(40, 40, 40); // Ou o mesmo cinza do fundo, se quiser manter o contraste
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
 
         }
+
+
 
         private void PersonalizarBotao(Button botao)
         {
@@ -100,7 +102,8 @@ namespace TelasCSharpp
 
             var tarefasAFazer = dao.PreencherVetor();
 
-            flowLayoutPanel1.Controls.Clear(); //
+            flowLayoutPanel1.Controls.Clear(); // 
+            flowLayoutPanel1.Refresh();
 
             foreach (var tarefa in tarefasAFazer)
             {
@@ -108,6 +111,11 @@ namespace TelasCSharpp
             }
         }
 
+        public void LimparFlowLayout(FlowLayoutPanel flowLayout)
+        {
+            flowLayout.Controls.Clear();
+            
+        }
 
 
         public void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -159,13 +167,13 @@ namespace TelasCSharpp
             {
                 
                 case "baixa":
-                    card.BackColor = Color.LightGreen;
+                    card.BackColor = Color.SeaGreen;
                     break;
                 case "media":
                     card.BackColor = Color.Goldenrod;
                     break;
                 default:
-                    card.BackColor = Color.Red;
+                    card.BackColor = Color.Coral;
                     break;
             }
 
@@ -283,6 +291,21 @@ namespace TelasCSharpp
         }
 
         private void button3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
