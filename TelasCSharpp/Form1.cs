@@ -64,6 +64,7 @@ namespace TelasCSharpp
             PersonalizarBotao(button2);
             PersonalizarBotao(button3);
             PersonalizarBotao(button4);
+            PersonalizarBotao(btnBuscar);
 
             // 🟤 Fundo do formulário principal
             this.BackColor = Color.FromArgb(40, 40, 40); // Cinza escuro
@@ -173,7 +174,7 @@ namespace TelasCSharpp
                     card.BackColor = Color.Goldenrod;
                     break;
                 default:
-                    card.BackColor = Color.Coral;
+                    card.BackColor = Color.Red;
                     break;
             }
 
@@ -288,6 +289,27 @@ namespace TelasCSharpp
         private void button2_Click_1(object sender, EventArgs e)
         {
 
+            //var filtroForm = new FormFiltros();
+            //
+            //if (filtroForm.ShowDialog() == DialogResult.OK)
+            //{
+            //    var dao = new DAO();
+            //    var tarefasFiltradas = dao.FiltrarTarefas(
+            //        filtroForm.StatusSelecionado,
+            //        filtroForm.PrioridadeSelecionada,
+            //        filtroForm.TituloBusca,
+            //        filtroForm.DataSelecionada
+            //    );
+            //
+            //    flowLayoutPanel1.Controls.Clear();
+            //
+            //    foreach (var tarefa in tarefasFiltradas)
+            //    {
+            //
+            //        flowLayoutPanel1.Controls.Add(CriarCard(tarefa));
+            //        
+            //    }
+            //}
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -307,6 +329,29 @@ namespace TelasCSharpp
 
         private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear(); // limpa resultados anteriores
+
+            string titulo = textBox1.Text.Trim();
+            DAO dao = new DAO();
+            List<Tarefa> tarefas = dao.BuscarPorTitulo(titulo);
+
+            flowLayoutPanel1.Controls.Clear(); // 
+            flowLayoutPanel1.Refresh();
+
+            foreach (var tarefa in tarefas)
+            {
+                flowLayoutPanel1.Controls.Add(CriarCard(tarefa));
+            }
 
         }
     }
