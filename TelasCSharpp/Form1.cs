@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.Cmp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -62,7 +63,6 @@ namespace TelasCSharpp
         {
             PersonalizarBotao(button1);
             PersonalizarBotao(button2);
-            PersonalizarBotao(button3);
             PersonalizarBotao(button4);
             PersonalizarBotao(btnBuscar);
 
@@ -289,27 +289,7 @@ namespace TelasCSharpp
         private void button2_Click_1(object sender, EventArgs e)
         {
 
-            //var filtroForm = new FormFiltros();
-            //
-            //if (filtroForm.ShowDialog() == DialogResult.OK)
-            //{
-            //    var dao = new DAO();
-            //    var tarefasFiltradas = dao.FiltrarTarefas(
-            //        filtroForm.StatusSelecionado,
-            //        filtroForm.PrioridadeSelecionada,
-            //        filtroForm.TituloBusca,
-            //        filtroForm.DataSelecionada
-            //    );
-            //
-            //    flowLayoutPanel1.Controls.Clear();
-            //
-            //    foreach (var tarefa in tarefasFiltradas)
-            //    {
-            //
-            //        flowLayoutPanel1.Controls.Add(CriarCard(tarefa));
-            //        
-            //    }
-            //}
+           
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -334,7 +314,19 @@ namespace TelasCSharpp
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            flowLayoutPanel1.Controls.Clear(); // limpa resultados anteriores
 
+            string titulo = textBox1.Text.Trim();
+            DAO dao = new DAO();
+            List<Tarefa> tarefas = dao.BuscarPorTitulo(titulo);
+
+            flowLayoutPanel1.Controls.Clear(); // 
+            flowLayoutPanel1.Refresh();
+
+            foreach (var tarefa in tarefas)
+            {
+                flowLayoutPanel1.Controls.Add(CriarCard(tarefa));
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -353,6 +345,34 @@ namespace TelasCSharpp
                 flowLayoutPanel1.Controls.Add(CriarCard(tarefa));
             }
 
+        }
+
+        private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click_2(object sender, EventArgs e)
+        {
+            var filtroForm = new FormFiltros();
+            if (filtroForm.ShowDialog() == DialogResult.OK)
+            {
+                string status = filtroForm.FiltroStatus;
+                string prioridade = filtroForm.FiltroPrioridade;
+                DateTime? data = filtroForm.FiltroData;
+
+                DAO dao = new DAO();
+                List<Tarefa> tarefasFiltradas = dao.FiltrarTarefas(status, prioridade, data);
+
+                flowLayoutPanel1.Controls.Clear(); // 
+                flowLayoutPanel1.Refresh();
+
+
+                foreach (var tarefa in tarefasFiltradas)
+                {
+                    flowLayoutPanel1.Controls.Add(CriarCard(tarefa));
+                }
+            }
         }
     }
 }

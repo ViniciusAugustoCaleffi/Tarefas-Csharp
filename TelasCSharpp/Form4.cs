@@ -23,10 +23,10 @@ namespace TelasCSharpp
             form = new Form1();
             var tarefa = dao.ObterTarefaPorId(id);
 
-            textBox2.Text = tarefa.Titulo;
             textBox1.Text = tarefa.Descricao;
+            textBox2.Text = tarefa.Titulo;
             comboBox1.Text = tarefa.Prioridade;
-            maskedTextBoxDtVencimento.Text = tarefa.DtVencimento.ToString();
+            dateTimePicker1.Text = tarefa.DtVencimento.ToString();
             checkBox1.Checked = tarefa.Concluida;
 
         }
@@ -65,21 +65,23 @@ namespace TelasCSharpp
         {
             DAO dao = new DAO();
             
-            string descricao = (textBox2.Text);
             string titulo = (textBox1.Text);
+            string descricao = (textBox2.Text);
             string prioridade = (comboBox1.Text);
             string concluida = (checkBox1.Checked.ToString());
 
-            
             DateTime DtVencimento = DateTime.Now;
-            DtVencimento = Convert.ToDateTime(maskedTextBoxDtVencimento.Text);
+            DtVencimento = Convert.ToDateTime(dateTimePicker1.Text);
             string sqlFormattedDate = DtVencimento.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
-            dao.Atualizar(_id, "descricao", descricao);
+
             dao.Atualizar(_id, "titulo", titulo);
+            dao.Atualizar(_id, "descricao", descricao);
             dao.Atualizar(_id, "prioridade", prioridade);
             dao.Atualizar(_id, "dtVencimento", sqlFormattedDate);
             dao.Atualizar(_id, "concluida", concluida);
+
+            MessageBox.Show(concluida, dao.Atualizar(_id, "concluida", concluida));
 
             
 
@@ -96,6 +98,11 @@ namespace TelasCSharpp
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }

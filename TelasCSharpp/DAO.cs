@@ -75,7 +75,7 @@ namespace TelasCSharpp
                               var prioridade = p.Prioridade?.Trim().ToLowerInvariant();
                               if (prioridade == "alta")
                                   return 1;
-                              if (prioridade == "media" || prioridade == "média")
+                              if (prioridade == "media")
                                   return 2;
                               if (prioridade == "baixa")
                                   return 3;
@@ -101,7 +101,15 @@ namespace TelasCSharpp
 
         public string Atualizar(int id, string campo, string dado)
         {
-            string query = $"update tarefa set {campo} = '{dado}' where id = '{id}'";
+            string query = "";
+            if (dado == "True")
+            {
+                query = $"update tarefa set {campo} = {dado} where id = '{id}'";
+            }
+            else
+            {
+                query = $"update tarefa set {campo} = '{dado}' where id = '{id}'";
+            }
             MySqlCommand sql = new MySqlCommand(query, conexao);
             String resultado = sql.ExecuteNonQuery() + " Atualizados!";
             return resultado;
@@ -183,60 +191,59 @@ namespace TelasCSharpp
             return tarefas;
         }
 
-        public List<Tarefa> FiltrarTarefas(string status, string prioridade, string titulo, DateTime? data)
+
+        public List<Tarefa> FiltrarTarefas(string status, string prioridade, DateTime? data)
         {
-            List<Tarefa> resultado = new List<Tarefa>();
+            List<Tarefa> tarefas = new List<Tarefa>();
+            
 
-            using (var conexao = new MySqlConnection("server=localhost;database=tintCsharp;uid=root;pwd="))
-            {
-                conexao.Open();
-                string query = "SELECT * FROM Tarefa WHERE 1=1";
-
+                var query = new StringBuilder("SELECT * FROM tarefa WHERE 1=1");
+            
                 if (status != "Todos")
-                    query += " AND Status = @status";
-
-                if (prioridade != "Todas")
-                    query += " AND Prioridade = @prioridade";
-
-                if (!string.IsNullOrWhiteSpace(titulo))
-                    query += " AND Titulo LIKE @titulo";
-
-                if (data.HasValue)
-                    query += " AND DATE(DataVencimento) = @data";
-
-                var comando = new MySqlCommand(query, conexao);
-
-                if (status != "Todos")
-                    comando.Parameters.AddWithValue("@status", status);
-
-                if (prioridade != "Todas")
-                    comando.Parameters.AddWithValue("@prioridade", prioridade);
-
-                if (!string.IsNullOrWhiteSpace(titulo))
-                    comando.Parameters.AddWithValue("@titulo", "%" + titulo + "%");
-
-                if (data.HasValue)
-                    comando.Parameters.AddWithValue("@data", data.Value.ToString("yyyy-MM-dd"));
-
-                using (var reader = comando.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (status == "concluidas")
                     {
-                        resultado.Add(new Tarefa
-                        {
-                            Id = Convert.ToInt32(reader["Id"]),
-                            Titulo = reader["Titulo"].ToString(),
-                            Descricao = reader["Descricao"].ToString(),
-                            Concluida = reader.GetBoolean("concluida"),
-                            Prioridade = reader["Prioridade"].ToString(),
-                            DtVencimento = Convert.ToDateTime(reader["DataVencimento"])
-                        });
+                        query.Append(" AND Concluida = 'TRUE'");
+                    }else
+                    {
+                        query.Append(" AND Concluida = 'FALSE'");
                     }
                 }
-            }
 
-            return resultado;
+                if (prioridade != "Todas")
+                    query.Append(" AND Prioridade = @prioridade");
+
+                if (data.HasValue)
+                    query.Append(" AND DtVencimento = @data");
+                using (var comando = new MySqlCommand(query.ToString(), conexao))
+                {
+                    if (prioridade != "Todas")
+                        comando.Parameters.AddWithValue("@prioridade", prioridade);
+
+                    if (data.HasValue)
+                        comando.Parameters.AddWithValue("@data", data.Value.Date);
+
+                    using (var reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tarefas.Add(new Tarefa
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Titulo = reader["Titulo"].ToString(),
+                                Descricao = reader["Descricao"].ToString(),
+                                Prioridade = reader["Prioridade"].ToString(),
+                                DtVencimento = Convert.ToDateTime(reader["DtVencimento"]),
+                                Concluida = Convert.ToBoolean(reader["Concluida"])
+                            });
+                        }
+                    }
+                }
+            
+            return tarefas;
         }
+
+
 
 
     }//fim Class DAO
